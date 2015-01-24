@@ -1,14 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PmTool</title>
+  <title>PM Tool</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
+<!-- Latest compiled and minified JavaScript -->
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
 </head>
 <body>
-
-<%= yield %>
-
+  <div>
+    <%= render "/layouts/header" %>
+      <div class="container">
+          <% if flash[:notice] %>
+            <%= flash[:notice] %> 
+          <% end %>
+          <hr>
+          <%= yield %>
+      </div>
+    </div>
 </body>
 </html>
