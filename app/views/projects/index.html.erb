@@ -3,11 +3,13 @@
     <tr>    
       <th>Project</th>
       <th>Body</th>
+      <th>Due Date</th>
     </tr>
       <% @projects.each do |t| %>
     <tr>
       <td><%= link_to t.title, t %></td>
-      <td><%= t.body %></td>
+      <td><%= t.description %></td>
+      <td><%= t.due_date %></td>
     </tr>
   <% end %>
   </table>
