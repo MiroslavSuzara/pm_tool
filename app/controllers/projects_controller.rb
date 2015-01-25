@@ -18,8 +18,30 @@ class ProjectsController < ApplicationController
       flash[:notice] = "Your Project has been created!"
       redirect_to projects_path
     else
+      flash[:notice] = "Please correct your errors below!"
       render :new
     end
+  end
+
+  def edit
+  @project = Project.find(params[:id])
+  end
+
+  def update
+    @project = Project.find params[:id]
+    if @project.update project_params
+      flash[:notice] = "Project updated!"
+      redirect_to @project
+    else
+      flash[:notice] = "Please correct your errors below!"
+      render :edit
+    end
+  end
+
+  def destroy
+    @project = Project.find params[:id]
+    @project.destroy
+    redirect_to projects_path
   end
 
   private
