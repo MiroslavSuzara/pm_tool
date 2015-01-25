@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   get "/about" => "home#about"
   root "home#index"
 
+  resources :home do
+  end
+
+  resources :projects do
+  end
+
 end
 
   # The priority is based upon order of creation: first created -> highest priority.

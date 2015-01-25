@@ -1,0 +1,14 @@
+<h1>Projects</h1>
+  <table class="table table-hover">
+    <tr>    
+      <th>Project</th>
+      <th>Body</th>
+    </tr>
+      <% @projects.each do |t| %>
+    <tr>
+      <td><%= link_to t.title, t %></td>
+      <td><%= t.body %></td>
+    </tr>
+  <% end %>
+  </table>
+  <hr>
