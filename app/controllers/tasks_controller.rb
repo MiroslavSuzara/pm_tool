@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :find_project
+  # before_action :find_project
   
   def show
     @project = Project.find(params[:id])
@@ -25,8 +25,8 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :due_date) 
   end
 
-  def find_project
-    @project = Project.find params[:project_id] 
-  end
+  # def find_project
+  #   @project = Project.find params[:project_id] 
+  # end
 
 end
