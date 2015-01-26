@@ -1,15 +1,16 @@
 class ProjectsController < ApplicationController
  
   def index
-  @projects = Project.all
+    @projects = Project.all
   end
 
   def show
-  @project = Project.find params[:id]
+    @project = Project.find params[:id]
+    @task = Task.new
   end
 
   def new
-  @project = Project.new
+    @project = Project.new
   end
 
   def create

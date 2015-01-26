@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
-    resources :tasks, only: [:show, :create, :update, :destroy] 
+    resources :tasks, only: [:create, :update, :destroy] 
+  
   end
 
 end
