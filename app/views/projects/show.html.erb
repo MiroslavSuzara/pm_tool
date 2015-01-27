@@ -3,3 +3,10 @@
 <p><strong>Due Date: </strong><%= @project.due_date %> </p>
 
 <%= render "layouts/taskform" %>
+
+<h2>Tasks</h2>
+<% @project.tasks.each do |task| %>
+  <%= task.title %>
+  <%= link_to "Delete", project_task_path(@project, task), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
+  <hr>
+<% end %>
