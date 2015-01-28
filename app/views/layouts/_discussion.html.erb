@@ -1,0 +1,22 @@
+<h2>Create Project Discussion</h2>
+<% if @discussion.errors.any? %>
+  <ul>
+    <% @discussion.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for [@project, @discussion] do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <br>
+  <div class="form-group">
+    <%= f.label :description %>
+    <%= f.text_field :description, class: "form-control" %>
+  </div>
+  <br>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>
