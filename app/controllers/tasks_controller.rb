@@ -2,7 +2,7 @@ class TasksController < ApplicationController
   before_action :find_project
   
   def show
-    @project = Project.find(params[:id])
+    @project = Project.find params[:id]
   end
 
   def new

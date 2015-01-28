@@ -7,6 +7,8 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find params[:id]
     @task = Task.new
+    @discussion = Discussion.new
+
   end
 
   def new
@@ -17,7 +19,7 @@ class ProjectsController < ApplicationController
     @project = Project.new project_params
     if @project.save
       flash[:notice] = "Your Project has been created!"
-      redirect_to project_path
+      redirect_to @project
     else
       flash[:notice] = "Please correct your errors below!"
       render :new
