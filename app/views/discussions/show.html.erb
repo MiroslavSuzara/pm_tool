@@ -1,5 +1,5 @@
 <% @project.discussions.each do |discussion| %>
-  <h2>Discussions</h2>
+  <h2>Discussion</h2>
     <p><strong><%= discussion.title %></strong></p>
     <p><%= discussion.description %></p>
     <%= link_to "Edit", edit_project_discussion_path(@project, discussion), class: "btn btn-default" %> 

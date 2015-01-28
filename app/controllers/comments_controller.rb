@@ -16,8 +16,8 @@ class CommentsController < ApplicationController
     @comment.discussion = @discussion
 
     if @comment.save
-      flash[:notice] = "Your Discussion has been created!"
-      redirect_to @project
+      flash[:notice] = "Your Comment has been created!"
+      redirect_to @comment.discussion
     else
       flash[:notice] = "Please correct your errors below!"
       redirect_to @comment.discussion
