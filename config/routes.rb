@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :projects do
-    resources :tasks, only: [:create, :update, :destroy] 
+    resources :tasks
     resources :discussions, only: [:create, :update, :destroy]
 
   end

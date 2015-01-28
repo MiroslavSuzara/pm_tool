@@ -6,8 +6,8 @@
 <hr>
 <h2>Tasks</h2>
   <% @project.tasks.each do |task| %>
-    <br>
     <p><%= task.title %></p>
+    <%= link_to "Edit", edit_project_task_path(@project, task), class: "btn btn-default" %> 
     <%= link_to "Delete", project_task_path(@project, task), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
   <hr>
 <% end %>
@@ -17,7 +17,6 @@
   <% @project.discussions.each do |discussion| %>
     <p><strong><%= discussion.title %></strong></p>
     <p><%= discussion.description %></p>
-    <br>
     <%= link_to "Delete", project_discussion_path(@project, discussion), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
   <hr>
 <% end %>
