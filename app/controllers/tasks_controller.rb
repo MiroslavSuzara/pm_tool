@@ -17,7 +17,7 @@ class TasksController < ApplicationController
     if @task.save
       redirect_to @project, notice: "Task created successfully!"
     else
-      render "projects/show"
+      redirect_to @project
     end
   end
 
@@ -29,7 +29,7 @@ class TasksController < ApplicationController
     @task = Task.find params[:id]
     if @task.update task_params
       flash[:notice] = "Task updated!"
-      redirect_to @project_task_path
+      redirect_to @project
     else
       flash[:notice] = "Please correct your errors below!"
       render :edit
