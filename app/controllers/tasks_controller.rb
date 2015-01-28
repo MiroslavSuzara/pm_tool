@@ -27,7 +27,6 @@ class TasksController < ApplicationController
     redirect_to @task.project, notice: "Task deleted!"
   end
 
-
   private
 
   def task_params
