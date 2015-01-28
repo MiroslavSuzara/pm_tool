@@ -1,13 +1,10 @@
-<h1><%= @discussion.title %></h1>
-  <p><%= @discussion.description %></p>
-<hr>
-  <%= render "layouts/discussion" %>
-  <hr>
-  <% @project.discussions.each do |discussion| %>
-    <h2>Discussions</h2>
-      <p><strong><%= discussion.title %></strong></p>
-      <p><%= discussion.description %></p>
-      <%= link_to "Edit", edit_project_discussion_path(@project, discussion), class: "btn btn-default" %> 
-      <%= link_to "Delete", project_discussion_path(@project, discussion), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
+<% @project.discussions.each do |discussion| %>
+  <h2>Discussions</h2>
+    <p><strong><%= discussion.title %></strong></p>
+    <p><%= discussion.description %></p>
+    <%= link_to "Edit", edit_project_discussion_path(@project, discussion), class: "btn btn-default" %> 
+    <%= link_to "Delete", project_discussion_path(@project, discussion), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
   <hr>
 <% end %>
+
+  <%= render "layouts/comment" %>

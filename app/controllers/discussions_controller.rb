@@ -2,6 +2,8 @@ class DiscussionsController < ApplicationController
   before_action :find_project
 
   def show
+    @discussion = Discussion.find params[:id]
+    @comment = Comment.new
   end
   
   def new
