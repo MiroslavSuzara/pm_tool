@@ -1,12 +1,11 @@
 class ProjectsController < ApplicationController
-  before_action :find_project
-
-
+ 
   def index
     @projects = Project.all
   end
 
   def show
+    @project = Project.find params[:id]
     @task = Task.new
     @discussion = Discussion.new
   end
@@ -27,9 +26,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project = Project.find params[:id]
   end
 
   def update
+    @project = Project.find params[:id]
     if @project.update project_params
       flash[:notice] = "Project updated!"
       redirect_to @project
@@ -40,6 +41,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    @project = Project.find params[:id]
     @project.destroy
     redirect_to projects_path
   end
@@ -48,10 +50,6 @@ class ProjectsController < ApplicationController
 
   def project_params
     params.require(:project).permit(:title, :description, :due_date)
-  end
-
-  def find_project
-    @project = Project.find params[:id] 
   end
 
 end
