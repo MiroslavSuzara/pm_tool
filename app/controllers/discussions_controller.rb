@@ -2,7 +2,6 @@ class DiscussionsController < ApplicationController
   before_action :find_project
 
   def show
-    @project = Project.find(params[:id])
   end
   
   def new
@@ -14,9 +13,31 @@ class DiscussionsController < ApplicationController
     @discussion.project = @project
 
     if @discussion.save
-      redirect_to @project, notice: "Discussion created successfully!"
+      flash[:notice] = "Your Discussion has been created!"
+      redirect_to @project
     else
-      render "projects/show"
+      flash[:notice] = "Please correct your errors below!"
+      redirect_to @discussion.project
+    end
+  end
+
+  def destroy
+    @discussion = Discussion.find params[:id]
+    @discussion.destroy
+    redirect_to @discussion.project, notice: "Discussion deleted!"
+  end
+
+  def edit
+    @discussion = Discussion.find params[:id]
+  end
+
+  def update
+    @discussion = Discussion.find params[:id]
+    if @discussion.update discussion_params
+      redirect_to @project, notice: "Updated successfully!"
+    else
+      flash.now[:alert] = "Please correct errors below!"
+      render :edit
     end
   end
 
