@@ -6,9 +6,8 @@
   <hr>
   <%= render "layouts/comment" %>
   <hr>
-    <% @discussion.comments.each do |test| %>
+    <% @discussion.comments.each do |comment| %>
       <h2>Comments</h2>
-      <%= test.body %>
-      <%= link_to "Delete", discussion_comment_path(@discussion, test), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-xs btn-danger" %>
+      <%= comment.body %>
+      <%= link_to "Delete", discussion_comment_path(@discussion, comment), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-xs btn-danger" %>
   <% end %>
-

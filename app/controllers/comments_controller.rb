@@ -5,7 +5,6 @@ class CommentsController < ApplicationController
   end
 
   def show
-    # @comment = Comment.find params[:id]
   end
 
   def new
@@ -25,6 +24,14 @@ class CommentsController < ApplicationController
       redirect_to @comment.discussion
     end
   end
+
+  def destroy
+    @discussion = Discussion.find params[:discussion_id] 
+    @comment = Comment.find params[:id]
+    @comment.destroy
+    redirect_to @comment.discussion, notice: "Task deleted!"
+  end
+
 
   private
 
