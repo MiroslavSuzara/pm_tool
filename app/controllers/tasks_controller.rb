@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
-  before_action :find_project
+  # before_action :find_project
   
   def show
+    @task = Task.find params[:id]
   end
 
   def new
@@ -9,7 +10,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    # @project = Project.find params[:project_id]
+    @project = Project.find params[:project_id]
     @task = Task.new task_params
     @task.project = @project
     
@@ -23,10 +24,12 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @project = Project.find params[:project_id]
     @task = Task.find params[:id]
   end
 
   def update
+    @project = Project.find params[:project_id]
     @task = Task.find params[:id]
     if @task.update task_params
       flash[:notice] = "Your task has been updated!"
@@ -49,8 +52,8 @@ class TasksController < ApplicationController
     params.require(:task).permit(:title, :due_date) 
   end
 
-  def find_project
-    @project = Project.find params[:project_id] 
-  end
+  # def find_project
+  #   @project = Project.find params[:project_id] 
+  # end
 
 end

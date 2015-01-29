@@ -1,5 +1,5 @@
 class DiscussionsController < ApplicationController
-  before_action :find_project
+  # before_action :find_project
 
   def show
     @discussion = Discussion.find params[:id]
@@ -11,6 +11,7 @@ class DiscussionsController < ApplicationController
   end
 
   def create
+    @project = Project.find params[:project_id]
     @discussion = Discussion.new discussion_params
     @discussion.project = @project
 
@@ -36,7 +37,7 @@ class DiscussionsController < ApplicationController
   def update
     @discussion = Discussion.find params[:id]
     if @discussion.update discussion_params
-      redirect_to @project, notice: "Updated successfully!"
+      redirect_to @discussion, notice: "Updated successfully!"
     else
       flash.now[:alert] = "Please correct errors below!"
       render :edit
@@ -49,9 +50,9 @@ class DiscussionsController < ApplicationController
     params.require(:discussion).permit(:title, :description) 
   end
 
-  def find_project
-    @project = Project.find params[:project_id] 
-  end
+  # def find_project
+  #   @project = Project.find params[:project_id] 
+  # end
 
   
 

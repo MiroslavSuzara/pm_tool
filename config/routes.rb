@@ -11,7 +11,6 @@ Rails.application.routes.draw do
     resources :discussions  
   end
 
-
   resources :discussions do
     resources :comments
   end

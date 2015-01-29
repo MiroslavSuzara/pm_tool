@@ -1,10 +1,11 @@
 class CommentsController < ApplicationController
-  before_action :find_discussion
+  # before_action :find_discussion
   
   def index
   end
 
   def show
+    # @comment = Comment.find params[:id]
   end
 
   def new
@@ -12,6 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def create
+    @discussion = Discussion.find params[:discussion_id] 
     @comment = Comment.new comment_params
     @comment.discussion = @discussion
 
@@ -30,8 +32,8 @@ class CommentsController < ApplicationController
     params.require(:comment).permit(:body) 
   end
 
-  def find_discussion
-    @discussion = Discussion.find params[:discussion_id] 
-  end
+  # def find_discussion
+  #   @discussion = Discussion.find params[:discussion_id] 
+  # end
 
 end
