@@ -5,6 +5,8 @@ class CommentsController < ApplicationController
   end
 
   def show
+    # @comment = Comment.find params[:id]
+    # @discussion = Discussion.find params[:discussion_id] 
   end
 
   def new
@@ -30,6 +32,22 @@ class CommentsController < ApplicationController
     @comment = Comment.find params[:id]
     @comment.destroy
     redirect_to @comment.discussion, notice: "Task deleted!"
+  end
+
+  def edit
+    @discussion = Discussion.find params[:discussion_id] 
+    @comment = Comment.find params[:id]
+  end
+
+  def update
+    @discussion = Discussion.find params[:discussion_id]
+    @comment = Comment.find params[:id]
+    if @comment.update comment_params
+      redirect_to @comment.discussion, notice: "Updated comment successfully!"
+    else
+      flash.now[:alert] = "Please correct errors below!"
+      render :edit
+    end
   end
 
 

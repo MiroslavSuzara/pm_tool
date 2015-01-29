@@ -9,5 +9,6 @@
     <% @discussion.comments.each do |comment| %>
       <h2>Comments</h2>
       <%= comment.body %>
-      <%= link_to "Delete", discussion_comment_path(@discussion, comment), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-xs btn-danger" %>
+      <%= link_to "Edit", edit_discussion_comment_path(@discussion, comment), class: "btn btn-default" %> 
+      <%= link_to "Delete", discussion_comment_path(@discussion, comment), data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-sm btn-danger" %>
   <% end %>
