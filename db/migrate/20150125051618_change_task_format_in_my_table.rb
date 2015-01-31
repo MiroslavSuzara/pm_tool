@@ -1,4 +1,4 @@
-class ChangeTitleFormatInTasks < ActiveRecord::Migration
+class ChangeTaskFormatInMyTable < ActiveRecord::Migration
   def up
     change_column :tasks, :title, :string
   end
