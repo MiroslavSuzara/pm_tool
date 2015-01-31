@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   get "/about" => "home#about"
   root "home#index"
+  patch "/tasks/done/:id" => "tasks#done", as: :done_tasks
 
   resources :home do
   end

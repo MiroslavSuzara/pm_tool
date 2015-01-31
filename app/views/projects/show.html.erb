@@ -9,6 +9,11 @@
       <p><%= task.title %></p>
       <%= link_to "Edit", edit_project_task_path(@project, task), class: "btn btn-default" %> 
       <%= link_to "Delete", project_task_path(@project, task), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
+      <% if task.status == false %>
+        <%= link_to "Not Done", done_tasks_path(task), class: "btn btn-sm btn-danger", method: :patch %>
+      <% else %>
+        <%= link_to "Done", done_tasks_path(task), class: "btn btn-sm btn-success", method: :patch %>
+      <% end %>
   <hr>
 <% end %>
   <%= render "layouts/discussion" %>

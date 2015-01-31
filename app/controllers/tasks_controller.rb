@@ -31,6 +31,7 @@ class TasksController < ApplicationController
   def update
     @project = Project.find params[:project_id]
     @task = Task.find params[:id]
+
     if @task.update task_params
       flash[:notice] = "Your task has been updated!"
       redirect_to @project
@@ -44,6 +45,20 @@ class TasksController < ApplicationController
     @task = Task.find params[:id]
     @task.destroy
     redirect_to @task.project, notice: "Task deleted!"
+  end
+
+  def done
+    @task = Task.find params[:id]
+
+    if @task.status == false
+      @task.status = true
+      @task.save
+      redirect_to @task.project, notice: "You have marked the Task as Done!"
+    elsif @task.status == true
+      @task.status = false
+      @task.save
+      redirect_to @task.project, notice: "You have marked a Task as Not Done!"
+    end
   end
 
   private
