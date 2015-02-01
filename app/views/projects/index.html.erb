@@ -6,7 +6,7 @@
       <th>Due Date</th>
       <th class="actions">Actions</th>
     </tr>
-      <% @projects.each do |t| %>
+    <% @projects.each do |t| %>
     <tr>
       <td><%= link_to t.title, project_path(t) %></td>
       <td><%= t.description %></td>
@@ -18,6 +18,6 @@
           </div>
         </td>
     </tr>
-  <% end %>
+    <% end %>
   </table>
   <hr>

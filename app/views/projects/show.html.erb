@@ -1,28 +1,55 @@
 <h1><%= @project.title %></h1>
   <p><%= @project.description %></p>
   <p><strong>Due Date: </strong><%= @project.due_date %> </p>
-<hr>
-<%= render "layouts/task" %>
-<hr>
-  <% @project.tasks.each do |task| %>
-    <h2>Tasks</h2>
-      <p><%= task.title %></p>
-      <%= link_to "Edit", edit_project_task_path(@project, task), class: "btn btn-default" %> 
-      <%= link_to "Delete", project_task_path(@project, task), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
-      <% if task.status == false %>
-        <%= link_to "Not Done", done_tasks_path(task), class: "btn btn-sm btn-danger", method: :patch %>
-      <% else %>
-        <%= link_to "Done", done_tasks_path(task), class: "btn btn-sm btn-success", method: :patch %>
-      <% end %>
   <hr>
-<% end %>
+<%= render "layouts/task" %>
+  <hr>
+  <h2>Tasks</h2>
+    <hr>
+    <div class="well">
+      <h3>Incomplete Tasks</h3>
+      <hr>
+      <% @project.tasks.each do |task| if task.status == false %>
+          <p><%= task.title %></p>
+          <p><%= task.due_date %></p>
+          <%= link_to "Edit", edit_project_task_path(@project, task), class: "btn btn-default" %> 
+          <%= link_to "Delete", project_task_path(@project, task), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
+          <% if task.status == false %>
+            <%= link_to "Not Done", done_tasks_path(task), class: "btn btn-sm btn-danger", method: :patch %>
+          <% else %>
+            <%= link_to "Done", done_tasks_path(task), class: "btn btn-sm btn-success", method: :patch %>
+          <% end %>
+          <hr>
+      <% end %>  
+      <% end %>
+    </div>
+    <hr>
+    <div class="well">
+      <h3>Completed Tasks</h3>
+      <hr>
+      <% @project.tasks.each do |task| if task.status == true %>
+          <p><%= task.title %></p>
+          <p><%= task.due_date %></p>
+          <%= link_to "Edit", edit_project_task_path(@project, task), class: "btn btn-default" %> 
+          <%= link_to "Delete", project_task_path(@project, task), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
+          <% if task.status == false %>
+            <%= link_to "Not Done", done_tasks_path(task), class: "btn btn-sm btn-danger", method: :patch %>
+          <% else %>
+            <%= link_to "Done", done_tasks_path(task), class: "btn btn-sm btn-success", method: :patch %>
+          <% end %>
+          <hr>
+      <% end %>  
+      <% end %>
+    </div>
+    <hr>
   <%= render "layouts/discussion" %>
   <hr>
-  <% @project.discussions.each do |discussion| %>
-    <h2>Discussions</h2>
-      <p><strong><%= link_to discussion.title, project_discussion_path(@project, discussion) %></strong></p>
-      <p><%= discussion.description %></p>
-      <%= link_to "Edit", edit_project_discussion_path(@project, discussion), class: "btn btn-default" %> 
-      <%= link_to "Delete", project_discussion_path(@project, discussion), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
+  <h2>Discussions</h2>
   <hr>
-<% end %>
+    <% @project.discussions.each do |discussion| %>
+        <p><strong><%= link_to discussion.title, project_discussion_path(@project, discussion) %></strong></p>
+        <p><%= discussion.description %></p>
+        <%= link_to "Edit", edit_project_discussion_path(@project, discussion), class: "btn btn-default" %> 
+        <%= link_to "Delete", project_discussion_path(@project, discussion), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
+        <hr>
+    <% end %>
