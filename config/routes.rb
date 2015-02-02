@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  devise_for :users
   get "/about" => "home#about"
   root "home#index"
   patch "/tasks/done/:id" => "tasks#done", as: :done_tasks
