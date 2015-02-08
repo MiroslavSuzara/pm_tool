@@ -23,7 +23,7 @@
        <div class="pull-right">
          <% if user_signed_in? %> 
           <li>
-            <%= current_user.full_name %> 
+            <%= "Hello" + " " + current_user.full_name %> 
             <%= link_to "sign out", destroy_user_session_path, method: :delete, class: "btn btn-default" %></li>
           <% else %>
           <li><%= link_to "sign in", new_user_session_path, class: "btn btn-default" %></li>

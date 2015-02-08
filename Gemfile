@@ -39,6 +39,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'thin'
 
 gem 'devise'
+gem 'cancancan', '~> 1.10'
 
 group :development do
   gem "colorize"

@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #if user is deleted, project is destroyed
+  has_many :projects, dependent: :destroy
+
   def full_name
     if first_name || last_name
       "#{first_name} #{last_name}".squeeze.strip

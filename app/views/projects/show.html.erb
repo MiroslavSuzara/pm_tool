@@ -1,6 +1,7 @@
 <h1><%= @project.title %></h1>
   <p><%= @project.description %></p>
   <p><strong>Due Date: </strong><%= @project.due_date %> </p>
+  <p>Created by: <%= @project.user_first_name %></p>
   <hr>
 <%= render "layouts/task" %>
   <hr>
@@ -11,7 +12,7 @@
       <hr>
       <% @project.tasks.each do |task| if task.status == false %>
           <p><%= task.title %></p>
-          <p><%= task.due_date %></p>
+          <p><%= task.due_date %></p>          
           <%= link_to "Edit", edit_project_task_path(@project, task), class: "btn btn-default" %> 
           <%= link_to "Delete", project_task_path(@project, task), data: {confirm: "Are you sure"}, method: :delete, class: "btn btn-sm btn-danger" %>
           <% if task.status == false %>
