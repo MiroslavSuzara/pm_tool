@@ -35,7 +35,6 @@ class ProjectsController < ApplicationController
   def edit
     # @project = Project.find params[:id]
     # redirect_to projects_path, notice: "Access denied" unless can? :edit, @project
-
   end
 
   def update

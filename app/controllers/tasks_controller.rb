@@ -1,6 +1,8 @@
 class TasksController < ApplicationController
   # before_action :find_project
-  
+    before_action :authenticate_user!
+    # before_action :restrict_access, only: [:destroy]
+
   def show
     @task = Task.find params[:id]
   end
@@ -11,8 +13,10 @@ class TasksController < ApplicationController
 
   def create
     @project = Project.find params[:project_id]
-    @task = Task.new task_params
-    @task.project = @project
+    @task = @project.tasks.new task_params
+    # @task = Task.new task_params
+    # @task.project = @project
+    @task.user = current_user
     
     if @task.save
       flash[:notice] = "Your Task has been created successfully!"
@@ -41,11 +45,21 @@ class TasksController < ApplicationController
     end
   end
 
+  # def destroy
+  #   @task = Task.find params[:id]
+  #   @task.destroy
+  #   redirect_to @task.project, notice: "Task deleted!"
+  # end
+
   def destroy
     @task = Task.find params[:id]
-    @task.destroy
-    redirect_to @task.project, notice: "Task deleted!"
+    if @task.user = current_user && @task.destroy
+      redirect_to @task.project, notice: "Task deleted"
+    else
+      redirect_to @task.project, error: "We had trouble deleting the Task"
+    end
   end
+
 
   def done
     @task = Task.find params[:id]
@@ -69,6 +83,12 @@ class TasksController < ApplicationController
 
   # def find_project
   #   @project = Project.find params[:project_id] 
+  # end
+
+  # def restrict_access
+  #   unless can? :manage, @task
+  #     redirect_to root_path, notice: "Access denied"
+  #   end
   # end
 
 end
